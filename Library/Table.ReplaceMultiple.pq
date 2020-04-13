@@ -2,7 +2,7 @@ let func =
  (TextToReplaceTable as table, TextColumnName as text, ReplacementsTable as table) => 
 let
     Source = ReplacementsTable,
-    CreateListOfLists = Table.Buffer(Table.ToRows(Source)),
+    CreateListOfLists = Table.ToRows(Table.Buffer(Source)),
     Text = TextToReplaceTable,
     TurnTextToList = Table.AddColumn(Text, "ReplacedText", each Text.Split(Record.Field(_, TextColumnName), " ")),
     Replacements = Table.AddColumn(TurnTextToList, "Changed Text Expected", 
